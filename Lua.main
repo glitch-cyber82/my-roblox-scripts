@@ -1,133 +1,65 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "Brainrot Multi-Hub",
-   LoadingTitle = "Loading Systems...",
-   LoadingSubtitle = "by Glitch Cyber",
-   ConfigurationSaving = {
-      Enabled = false
-   },
-   KeySystem = false
+    Name = "Multi Hub",
+    LoadingTitle = "Multi Hub",
+    LoadingSubtitle = "by Glitch Cyber",
+    ConfigurationSaving = {
+        Enabled = false,
+    },
+    KeySystem = false
 })
 
 -- ==========================================
--- TAB 1: 99 NIGHTS EXCLUSIVES
+-- 99 NIGHTS TAB (All requested scripts)
 -- ==========================================
 local NightsTab = Window:CreateTab("99 Nights", 4483362458)
 
 NightsTab:CreateSection("Moonity")
 NightsTab:CreateButton({
-   Name = "Load Moonity (99 Nights)",
-   Callback = function()
-       loadstring(game:HttpGet("https://raw.githubusercontent.com/AlSploit/Moonity/main/Source.lua"))()
-   end,
+    Name = "Load Moonity",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/AlSploit/Moonity/main/Source.lua"))()
+    end,
 })
 
 NightsTab:CreateSection("Nexon")
 NightsTab:CreateButton({
-   Name = "Load Nexon (99 Nights)",
-   Callback = function()
-       loadstring(game:HttpGet("https://raw.githubusercontent.com/NexonHub/Roblox/main/Source.lua"))()
-   end,
+    Name = "Load Nexon",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/NexonHub/Roblox/main/Source.lua"))()
+    end,
 })
 
 NightsTab:CreateSection("Ringta")
 NightsTab:CreateButton({
-   Name = "Load Ringta (99 Nights)",
-   Callback = function()
-       -- Public source for Ringta
-       loadstring(game:HttpGet("https://raw.githubusercontent.com/Ringta/Scripts/main/99Nights.lua"))()
-   end,
+    Name = "Load Ringta",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Qiwikox12/stubrawl/refs/heads/main/99Night.txt"))()
+    end,
 })
 
 NightsTab:CreateSection("Foxname")
 NightsTab:CreateButton({
-   Name = "Load Foxname (99 Nights)",
-   Callback = function()
-       loadstring(game:HttpGet("https://raw.githubusercontent.com/Foxname/Hub/main/Source.lua"))()
-   end,
+    Name = "Load Foxname",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/caomod2077/Script/refs/heads/main/FoxnameHub.lua"))()
+    end,
 })
 
 NightsTab:CreateSection("Voidware")
 NightsTab:CreateButton({
-   Name = "Load Voidware (99 Nights)",
-   Callback = function()
-       loadstring(game:HttpGet("https://raw.githubusercontent.com/VoidWare/scripts/main/hub.lua"))()
-   end,
+    Name = "Load Voidware",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/VapeVoidware/VW-Add/main/nightsintheforest.lua", true))()
+    end,
 })
 
--- ==========================================
--- TAB 2: OTHER HUBS
--- ==========================================
-local OtherHubsTab = Window:CreateTab("Other Hubs", 4483362458)
-
-OtherHubsTab:CreateSection("Chili Hub")
-OtherHubsTab:CreateButton({
-   Name = "Load Chili Hub",
-   Callback = function()
-       loadstring(game:HttpGet("https://raw.githubusercontent.com/ChiliScripts/ChiliHub/main/Source.lua"))()
-   end,
-})
-
-OtherHubsTab:CreateSection("Moon Hub")
-OtherHubsTab:CreateButton({
-   Name = "Load Moon Hub",
-   Callback = function()
-       loadstring(game:HttpGet("https://raw.githubusercontent.com/NighterEpic/MoonHub/main/Script.lua"))()
-   end,
-})
-
--- ==========================================
--- TAB 3: BRAINROT UTILITY
--- ==========================================
-local BrainrotTab = Window:CreateTab("Brainrot Utility", 4483362458)
-
-BrainrotTab:CreateSection("Brainrot Sound Finder")
-BrainrotTab:CreateButton({
-   Name = "Scan Game for Brainrot Audio",
-   Callback = function()
-       local found = false
-       for _, v in pairs(game:GetDescendants()) do
-           if v:IsA("Sound") then
-               if string.find(v.Name:lower(), "skibidi") or string.find(v.Name:lower(), "sigma") or string.find(v.Name:lower(), "rizz") or string.find(v.Name:lower(), "hawk") then
-                   Rayfield:Notify({
-                      Name = "Brainrot Located!",
-                      Content = "Found Audio: " .. v.Name .. " | ID: " .. string.match(v.SoundId, "%d+"),
-                      Duration = 5,
-                      Image = 4483362458,
-                   })
-                   found = true
-               end
-           end
-       end
-       if not found then
-           Rayfield:Notify({
-              Name = "Scan Complete",
-              Content = "No obvious brainrot sound files found in Workspace.",
-              Duration = 3,
-              Image = 4483362458,
-           })
-       end
-   end,
-})
-
-BrainrotTab:CreateSection("Brainrot Stealer Chat")
-BrainrotTab:CreateButton({
-   Name = "Steal Brainrot Phrase",
-   Callback = function()
-       local phrases = {
-           "Skibidi Hawk Tuah Rizzler", 
-           "Sigma Ohio Gyatt 100", 
-           "Fanum Taxing your braincells", 
-           "Baby Gronk Mewing Streak",
-           "Look between H and L on your keyboard"
-       }
-       local randomPhrase = phrases[math.random(1, #phrases)]
-       
-       if game:GetService("TextChatService").ChatVersion == Enum.ChatVersion.TextChatService then
-           game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync(randomPhrase)
-       else
-           game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(randomPhrase, "All")
-       end
-   end,
+-- Optional: Extra utilities (you can remove if you want only 99 Nights)
+NightsTab:CreateSection("Utilities")
+NightsTab:CreateButton({
+    Name = "Rejoin Server",
+    Callback = function()
+        game:GetService("TeleportService"):Teleport(game.PlaceId, game:GetService("Players").LocalPlayer)
+    end,
 })
